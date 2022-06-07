@@ -1,20 +1,21 @@
 <?php
-
 if (isset($_POST['submit'])) {
     include 'dbconnect.php';
     $email = $_POST['email'];
     $pass = $_POST['password'];
-    // $name = $_POST['name'];
-    // $address = addslashes($_POST['address']);
-    // $phone = addslashes($_POST['phone']);
+
     $sqllogin = "SELECT * FROM mytutor_web WHERE user_email = '$email' AND user_password = '$pass'";
     $stmt = $conn->prepare($sqllogin);
     $stmt->execute();
     $number_of_rows = $stmt->fetchColumn();
 
-    if ($number_of_rows > 0) {
-        echo "<script>alert('Login Successful');</script>";
-        echo "<script> window.location.replace('index.php')</script>";
+
+    if ($number_of_rows  > 0) {
+        session_start();
+        $_SESSION["sessionid"] = session_id();
+        $_SESSION["email"] = $email;
+        echo "<script>alert('Login Success');</script>";
+        echo "<script> window.location.replace('mainpage.php')</script>";
     } else {
         echo "<script>alert('Login Failed');</script>";
         echo "<script> window.location.replace('login.php')</script>";
@@ -80,58 +81,48 @@ if (isset($_POST['submit'])) {
                     <label> Remember Me</label>
                 </p>
                 <p>
-                    <input class="w3-input w3-round w3-border w3-blue" type="submit" name="submit" id="submit">
+                    <input class="w3-input w3-round w3-border w3-blue" type="submit" name="submit" id="idsubmit">
                 </p>
                 <hr>
                 <p>By creating an account you agree to our <a href="#">Terms & Privacy</a>.</p>
 
-                <button type="submit" class="registerbtn w3-round w3-blue"><a href="../php/register.php">Register</button>
+                <button type="register" class="registerbtn w3-round w3-blue"><a href="../php/register.php">Register</button>
             </form>
         </div>
     </div>
 
     <div id="cookieNotice" class="w3-right w3-block" style="display: none;">
-        <div class="w3-blue">
+        <div class="w3-red">
             <h4>Cookie Consent</h4>
-            <p>This website uses cookies or similar technologies, to enhance your browsing experience and provide personalized recommendations.
+            <p>This website uses cookies or similar technologies, to enhance your
+                browsing experience and provide personalized recommendations.
                 By continuing to use our website, you agree to our
-                <a style="color:#115cfa;" href="https://policies.google.com/privacy?hl=en-US">Privacy Policy</a>
+                <a style="color:#115cfa;" href="/privacy-policy">Privacy Policy</a>
             </p>
             <div class="w3-button">
                 <button onclick="acceptCookieConsent();">Accept</button>
             </div>
         </div>
     </div>
-
-    <script>
-        let cookie_consent = getCookies("user_cookkie_consent");
-        if (cookie_consent != "") {
-            document.getElementById("cookieNotice").style, display = "none";
-        } else {
-            documentt.getElementById("cookieNotice").style.display = "block";
-        }
-
-        function deleteCookie(cname) {
-            const d = new Date();
-            d.setTime(d.getTime() + (24 * 60 * 60 * 1000));
-            let expires = "expires=" + d.toUTCString();
-            document.cookie = cname + "=;" + expires + ";path=/";
-        }
-
-        function acceptCookieConsent() {
-            deleteCookie('user_cookie_consent');
-            setCookies('user_cookie_consent', 1, 30);
-            document.getElementById("cookieNotice").style.display = "none";
-        }
-    </script>
-
-
-    <footer class="w3-footer w3-center w3-light-grey w3-padding-8 w3-Small">
-        <p>Slumbshop No Copyright</p>
-        <p>Powered by <a href="https://www.w3schools.com/w3css/default.asp" title="W3.CSS" target="_blank" class="w3-hover-text-green">w3.css</a></p>
+    <footer class="w3-footer w3-center w3-black w3-padding-8 w3-Small">
+        <p>MyTutor No Copyright</p>
+        <p>Powered by <a href="https://www.w3schools.com/w3css/default.asp" title="W3.CSS" target="_blank" class="w3-hover-text-green">Visual Studio</a></p>
+        <div class="bg-light py-4">
+            <div class="container text-center">
+                <p class="text-muted mb-0 py-2">© 2022 MyTutor All rights reserved.</p>
+            </div>
+        </div>
     </footer>
-
 </body>
+<script>
+    let cookie_consent = getCookie("user_cookie_consent");
+    if (cookie_consent != "") {
+        document.getElementById("cookieNotice").style.display = "none";
+    } else {
+        document.getElementById("cookieNotice").style.display = "block";
+    }
+</script>
+
 
 
 </html>

@@ -2,7 +2,7 @@ function rememberMe() {
     var email = document.forms["loginForm"]["idemail"].value;
     var pass = document.forms["loginForm"]["idpass"].value;
     var rememberme = document.forms["loginForm"]["idremember"].checked;
-    console.log("Form data:"+rememberme + "," +email + "," +pass);
+    // console.log("Form data:"+rememberme + "," +email + "," +pass);
 
     if(!rememberme) {
         setCookies("cemail","",0);
@@ -27,9 +27,9 @@ function rememberMe() {
 }
 
 function setCookies(cookiename, cookiedata, exdays) {
-    var d = new Date();
-    d.setTime(d.getTime() + (exdays * 24 * 60 * 60 * 1000));
-    var expires = "expires=" + d.toUTCString();
+    var date = new Date();
+    date.setTime(date.getTime() + (exdays * 24 * 60 * 60 * 1000));
+    var expires = "expires=" + date.toUTCString();
     document.cookie = cookiename + "=" + cookiedata + ";" + expires + ";path=/";
 }
 
@@ -37,7 +37,7 @@ function loadCookies() {
     var username = getCookie("cemail");
     var password = getCookie("cpass");
     var rememberme = getCookie("crem");
-    // console.log("COOKIES:" + username, password, rememberme);
+    console.log("COOKIES:" + username, password, rememberme);
     document.forms["loginForm"]["idemail"].value = username;
     document.forms["loginForm"]["idpass"].value = password;
     if (rememberme) {

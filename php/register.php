@@ -16,7 +16,7 @@ if (isset($_POST['submit'])) {
             $last_id = $conn->lastInsertId();
             uploadImage($last_id);
             echo "<script>alert('Registration Success')</script>";
-            echo "<script>window.location.replace('index.php')</script>";
+            echo "<script>window.location.replace('mainpage.php')</script>";
         }
     } catch (PDOException $e) {
         echo "<script>alert('Registration Failed')</script>";
@@ -62,7 +62,6 @@ function uploadImage($filename)
 
 </head>
 <header class="w3-container w3-theme w3-padding" id="myHeader">
-    <i onclick="w3_open()" class="fa fa-bars w3-xlarge w3-theme"></i>
     <div class="w3-center w3-animate-bottom">
         <h4>ONLINE TUTOR BOOKING WEB SITES</h4>
         <h1 class="w3-xxxlarge w3-animate-bottom">MY TUTOR</h1>
@@ -74,6 +73,10 @@ function uploadImage($filename)
 </header>
 
 <body>
+    <div class="w3-bar w3-black w3-box">
+        <a href="login.php" class="w3-bar-item w3-button w3-right">LOGIN</a>
+        <a href="register.php" class="w3-bar-item w3-button w3-right">REGISTER</a>
+    </div>
 
     <div style="display:flex; justify-content: center">
         <div class="w3-container w3-card w3-padding w3-margin" style="width: 600px; margin:auto; text-align:left">
@@ -127,12 +130,50 @@ function uploadImage($filename)
         </div>
 
     </div>
+    </div>
 
 </body>
+<footer class="w3-black">
+    <div class="w3-container w3-content w3-padding-64" style="max-width:800px" id="contact">
+        <h2 class="w3-wide w3-center">CONTACT</h2>
+        <p class="w3-opacity w3-center"><i>Interested in our service? Contact us</i></p>
+        <div class="w3-row w3-padding-32">
+            <div class="w3-col m6 w3-large w3-margin-bottom">
+                <i class="fa fa-map-marker" style="width:30px"></i> Malaysia, Melacca<br>
+                <i class="fa fa-phone" style="width:30px"></i> Phone: +601 6762111<br>
+                <i class="fa fa-envelope" style="width:30px"> </i> Email: jcleong@gmail.com<br>
+            </div>
+            <div class="w3-col m6">
+                <form action="/action_page.php" target="_blank">
+                    <div class="w3-row-padding" style="margin:0 -16px 8px -16px">
+                        <div class="w3-half">
+                            <input class="w3-input w3-border" type="text" placeholder="Name" required name="Name">
+                        </div>
+                        <div class="w3-half">
+                            <input class="w3-input w3-border" type="text" placeholder="Email" required name="Email">
+                        </div>
+                    </div>
+                    <input class="w3-input w3-border" type="text" placeholder="Message" required name="Message">
+                    <button class="w3-button w3-black w3-section w3-right" type="submit">SEND</button>
 
 
+                </form>
+            </div>
+        </div>
+    </div>
 
+    <!-- End Page Content -->
+    </div>
+</footer>
 
-
+<footer class="w3-container w3-padding-64 w3-center w3-opacity w3-light-grey w3-xlarge">
+    <i class="fa fa-facebook-official w3-hover-opacity"></i>
+    <i class="fa fa-instagram w3-hover-opacity"></i>
+    <i class="fa fa-snapchat w3-hover-opacity"></i>
+    <i class="fa fa-pinterest-p w3-hover-opacity"></i>
+    <i class="fa fa-twitter w3-hover-opacity"></i>
+    <i class="fa fa-linkedin w3-hover-opacity"></i>
+    <p class="w3-medium">Powered by <a href="https://www.w3schools.com/w3css/default.asp" target="_blank">w3.css</a></p>
+</footer>
 
 </html>
