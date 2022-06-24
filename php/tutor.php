@@ -8,12 +8,6 @@ include_once("dbconnect.php");
 
 if (isset($_GET['submit'])) {
     $operation = $_GET['submit'];
-    if ($operation == 'delete') {
-        $trid = $_GET['trid'];
-        $sqldeletepr = "DELETE FROM `tbl_tutors` WHERE tutor_id = '$trid'";
-        $conn->exec($sqldeletepr);
-        echo "<script>alert('subject deleted')</script>";
-    }
     if ($operation == 'search') {
         $search = $_GET['search'];
         $sqltutor = "SELECT * FROM tbl_tutors WHERE tutor_name LIKE '%$search%'";
@@ -22,7 +16,7 @@ if (isset($_GET['submit'])) {
     $sqltutor = "SELECT * FROM tbl_tutors";
 }
 
-$results_per_page = 10;
+$results_per_page = 5;
 if (isset($_GET['pageno'])) {
     $pageno = (int)$_GET['pageno'];
     $page_first_result = ($pageno - 1) * $results_per_page;
@@ -82,8 +76,7 @@ function truncate($string, $length, $dots = "...")
             <button onclick="w3_close()" class="w3-bar-item w3-button w3-large w3-center">Close &times;
             </button>
             <hr>
-            <a href="mainpage.php" class="w3-bar item w3-button">Dashboard</a>
-            <a href="subject.php" class="w3-bar item w3-button">Courses</a>
+            <a href="course.php" class="w3-bar item w3-button">Courses</a>
             <a href="tutor.php" class="w3-bar item w3-button">Tutors</a>
             <a href="login.php" class="w3-bar item w3-button">Subscription</a>
             <a href="login.php" class="w3-bar item w3-button">Profile</a>
@@ -123,7 +116,7 @@ function truncate($string, $length, $dots = "...")
 
             echo "<div class='w3-card-4 w3-round' style='margin:4px'>
             <header class='w3-container w3-black'><h5><b>$trname</b></h5></header>";
-            echo "<style='text-decoration: none;'> <img class='w3-image' src=../../mytutor_web/res/tutors/$trid.jpg" .
+            echo "<a href='tutordetails.php?trid=$trid' style='text-decoration: none;'> <img class='w3-image' src=../../mytutor_web/res/tutors/$trid.jpg" .
                 " onerror=this.onerror=null;this.src='../../mytutor_web/res/default.jpg'"
                 . " style='width:100%;height:250px'></a><hr>";
             echo "<div class='w3-container'><p class='w3-center'>Tutor<br>$trname</P>Email: $tremail<br>Phone: $trphone
@@ -131,7 +124,6 @@ function truncate($string, $length, $dots = "...")
             
             </div>";
         }
-        // <div class='w3-button w3-yellow w3-round w3-block' onClick='addSubscription($trid)'>Add Subscription</div></p></div>
         ?>
        
     </div>

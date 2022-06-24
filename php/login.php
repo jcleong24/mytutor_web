@@ -4,7 +4,7 @@ if (isset($_POST['submit'])) {
     $email = $_POST['email'];
     $pass = $_POST['password'];
 
-    $sqllogin = "SELECT * FROM mytutor_web WHERE user_email = '$email' AND user_password = '$pass'";
+    $sqllogin = "SELECT * FROM tbl_user WHERE user_email = '$email' AND user_password = '$pass'";
     $stmt = $conn->prepare($sqllogin);
     $stmt->execute();
     $number_of_rows = $stmt->fetchColumn();
@@ -15,7 +15,7 @@ if (isset($_POST['submit'])) {
         $_SESSION["sessionid"] = session_id();
         $_SESSION["email"] = $email;
         echo "<script>alert('Login Success');</script>";
-        echo "<script> window.location.replace('mainpage.php')</script>";
+        echo "<script> window.location.replace('course.php')</script>";
     } else {
         echo "<script>alert('Login Failed');</script>";
         echo "<script> window.location.replace('login.php')</script>";
@@ -31,8 +31,6 @@ if (isset($_POST['submit'])) {
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-
-    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
     <link rel="stylesheet" href="https://www.w3schools.com/lib/w3-theme-black.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-awesome.min.css">
     <title>Login Page</title>
@@ -41,10 +39,9 @@ if (isset($_POST['submit'])) {
 
 </head>
 <header class="w3-container w3-theme w3-padding" id="myHeader">
-    <div class="w3-xlarge w3-theme"></div>
     <div class="w3-center w3-animate-bottom">
         <h4>ONLINE TUTOR BOOKING WEB SITES</h4>
-        <h1 class="w3-xxxlarge w3-animate-bottom">MY TUTOR</h1>
+        <h1>MY TUTOR</h1>
     </div>
 </header>
 

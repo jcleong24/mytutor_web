@@ -84,10 +84,9 @@ function truncate($string, $length, $dots = "...") {
             <button onclick="w3_close()" class="w3-bar-item w3-button w3-large w3-center">Close &times;
             </button>
             <hr>
-            <a href="mainpage.php" class="w3-bar item w3-button">Dashboard</a>
             <a href="course.php" class="w3-bar item w3-button">Courses</a>
             <a href="tutor.php" class="w3-bar item w3-button">Tutors</a>
-            <a href="#" class="w3-bar item w3-button">Subscription</a>
+            <a href="admincourse.php" class="w3-bar item w3-button">Subscription</a>
             <a href="#" class="w3-bar item w3-button">Profile</a>
         </div>
     </div>
@@ -99,7 +98,7 @@ function truncate($string, $length, $dots = "...") {
     </div>
     </div>
 
-    <div class=" w3-container w3-padding w3-margin w3-roundf">
+    <div class=" w3-container w3-padding w3-margin w3-round">
         <h3>Subject Search</h3>
         <form>
             <div class="w3-row">
@@ -128,10 +127,10 @@ function truncate($string, $length, $dots = "...") {
 
             echo "<div class='w3-card-4 w3-round' style='margin:10px'>
             <header class='w3-container w3-black'><h5><b>$sbname</b></h5></header>";
-            echo "<style='text-decoration: none;'> <img class='w3-image' src=../../mytutor_web/res/courses/$sbid.png" .
+            echo "<a href='coursedetails.php?sbid=$sbid' style='text-decoration: none;'> <img class='w3-image' src=../../mytutor_web/res/courses/$sbid.png" .
                 " onerror=this.onerror=null;this.src='../../mytutor_web/res/default.jpg'"
                 . " style='width:100%;height:250px'></a><hr>";
-            echo "<div class='w3-container w3-justify'><p class='w3-center'>Price: RM $sbprice</p>$sbdesc<hr><br>Tutor id: $tutor_id<br>Subject session: $sbsessions<br>Subject rating: $sbrating</br>
+            echo "<div class='w3-container w3-center'><p class='w3-center'>Price: RM $sbprice</p><hr><br>Tutor id: $tutor_id<br>Subject session: $sbsessions<br>Subject rating: $sbrating</br>
             <br></div>
             </div>";
         }
